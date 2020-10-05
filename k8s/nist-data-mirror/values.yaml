@@ -10,6 +10,12 @@ image:
 
 replicaCount: 1
 
+env:
+  - name: JAVA_OPTS
+    value:
+      -Dhttps.proxyHost=yourproxyhost.domain -Dhttps.proxyPort=3128 -Dhttp.proxyHost=yourproxyhost.domain
+      -Dhttp.proxyPort=3128 -Dhttp.nonProxyHosts="localhost|*.domain"
+
 service:
   # Type of service you want to create. e.g. Loadbalancer, Nodeport, etc.
   type: ClusterIP
@@ -60,7 +66,8 @@ persistence:
 ## Configure resource requests and limits
 ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
 ##
-resources: {}
+resources:
+  {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
@@ -99,20 +106,22 @@ tolerations: []
 
 affinity: {}
 
-volumes: {}
+volumes:
+  {}
   # Configure any addtional volumes need to be attached to the pod
   # - name: certificates
   #   hostPath:
   #     path: /etc/pki
   #     type: Directory
 
-
-volumeMounts: {}
+volumeMounts:
+  {}
   # Configure any addtional volumes need to be attached to the containers
   # - name: certificates
   #   mountPath: /etc/pki
 
-dnsConfig: {}
+dnsConfig:
+  {}
   # options:
   #   - name: ndots
   #     value: "1"
